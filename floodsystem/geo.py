@@ -48,6 +48,7 @@ def rivers_by_station(stations):
                 repeat = True
         if repeat == False:
             rivers.append(river)
+    return rivers
 
 #task 1Db
 def stations_by_river(stations):
@@ -59,6 +60,7 @@ def stations_by_river(stations):
             dict.update({station.river: station.name})
         else:
             dict[station.river] = list(dict[station.river]) + station.name
+    return dict
 
 def rivers_by_station_number(stations, N) :
     return stations
