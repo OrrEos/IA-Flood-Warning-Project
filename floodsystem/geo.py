@@ -34,3 +34,20 @@ def stations_within_radius(stations, centre, r):
         if distance_x <= r:
             ret.append(station.name)
     return sorted(ret)
+
+#task 1D
+def rivers_by_station(stations):
+    stations = build_station_list()
+    rivers = []
+    for station in stations:
+        river = station.river
+        repeat = False
+        for item in rivers:
+            if river == rivers[item]:
+                repeat = True
+        if repeat == False:
+            rivers.append(river)
+
+
+def rivers_by_station_number(stations, N) :
+    return stations
