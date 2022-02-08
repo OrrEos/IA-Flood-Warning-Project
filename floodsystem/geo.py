@@ -62,5 +62,11 @@ def stations_by_river(stations):
             dict[station.river] = list(dict[station.river]) + station.name
     return dict
 
+#task 1E
 def rivers_by_station_number(stations, N) :
-    return stations
+    stations = build_station_list()
+    ret = []
+    for station in stations:
+        if station[1] > N:
+            ret.append(station)
+    return sorted(ret, key = ret[1])
