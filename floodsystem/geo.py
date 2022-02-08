@@ -64,9 +64,13 @@ def stations_by_river(stations):
 
 #task 1E
 def rivers_by_station_number(stations, N) :
-    stations = build_station_list()
+    stations = stations_by_river(stations)
     ret = []
-    for station in stations:
-        if station[1] > N:
-            ret.append(station)
-    return sorted(ret, key = ret[1])
+    for key, value in stations:
+        ret.append((key, len(value)))
+    #attempting to sort the value of length of the tuple, so that largest number is first.
+    ret.sort(ret, key = ret[[1]], reverse = True)
+    return ret[:N]
+
+
+
