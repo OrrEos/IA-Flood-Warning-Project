@@ -43,7 +43,7 @@ def rivers_by_station(stations):
         river = station.river
         repeat = False
         #attempt to ensure there are no river repeats
-        for item in rivers:
+        for item in len(rivers):
             if river == rivers[item]:
                 repeat = True
         if repeat == False:
