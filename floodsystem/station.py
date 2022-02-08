@@ -47,11 +47,11 @@ class MonitoringStation:
             return True
         else:
             return False
-            
+
 #task1Fb
 def inconsistent_typical_range_stations(stations):
     ret = []
     for station in stations:
-        if typical_range_consistent(station) == False:
+        if station.typical_range_consistent() == False:
             ret.append(station.name)
     return sorted(ret)
