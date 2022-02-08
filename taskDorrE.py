@@ -29,7 +29,7 @@ def run2():
     return RiverDict
     
 
-#print (run2())
+print (run2())
 
 
     

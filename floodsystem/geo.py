@@ -44,6 +44,7 @@ def rivers_with_station(stations):
     return rivers
 
 #task 1Db
+"""
 def stations_by_river(stations):
     stations = build_station_list()
     dict = {}
@@ -53,6 +54,19 @@ def stations_by_river(stations):
             dict.append(station.river, station.name)#add new name to river key
         else:
             dict[station.river] = station.name
+    return dict
+"""
+
+#task 1Db
+def stations_by_river(stations):
+    stations = build_station_list()
+    dict = {}
+    for station in stations:
+        #Check for river in dictionary, and add new item, or append dictionary list.
+        if not station.river  in dict:
+            dict.update({station.river: list([station.name])})#add new name to river key
+        else:
+            dict[station.river] = list(dict[station.river])+[station.name]
     return dict
 
 #task 1E
