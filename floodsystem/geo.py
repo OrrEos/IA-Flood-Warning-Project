@@ -36,18 +36,11 @@ def stations_within_radius(stations, centre, r):
     return sorted(ret)
 
 #task 1Da
-def rivers_by_station(stations):
+def rivers_with_station(stations):
     stations = build_station_list()
     rivers = []
     for station in stations:
-        river = station.river
-        repeat = False
-        #attempt to ensure there are no river repeats
-        for item in len(rivers):
-            if river == rivers[item]:
-                repeat = True
-        if repeat == False:
-            rivers.append(river)
+        rivers.append(station.river)
     return rivers
 
 #task 1Db
@@ -56,10 +49,10 @@ def stations_by_river(stations):
     dict = {}
     for station in stations:
         #Check for river in dictionary, and add new item, or append dictionary list.
-        if station.river in dict:
-            dict.update({station.river: station.name})
+        if station.river  in dict:
+            dict.append(station.river, station.name)#add new name to river key
         else:
-            dict[station.river] = list(dict[station.river]) + station.name
+            dict[station.river] = station.name
     return dict
 
 #task 1E
