@@ -15,6 +15,7 @@ def run2():
     print(sorted(RiverDict['River Aire']))
     print(sorted(RiverDict['River Cam']))
     print(sorted(RiverDict['River Thames']))
+    print(RiverDict['River Dikler'])
 
 
 run2()

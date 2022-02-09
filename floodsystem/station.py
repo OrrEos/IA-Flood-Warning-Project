@@ -39,16 +39,18 @@ class MonitoringStation:
         d += "   typical range: {}".format(self.typical_range)
         return d
 
-    #task 1Fa
+    # task 1Fa
     def typical_range_consistent(self):
-        if self.typical_range[1] < self.typical_range[0]:
+        '''Trying to see when this function gets added to the class'''
+        if self.typical_range == None:
             return False
-        elif self.typical_range[1] >= self.typical_range[0]:
-            return True
+        elif self.typical_range[1] < self.typical_range[0]:
+            return False
         else:
-            return False
+            return True
 
-#task1Fb
+
+# task1Fb
 def inconsistent_typical_range_stations(stations):
     ret = []
     for station in stations:
