@@ -21,11 +21,9 @@ def run2():
     stations = build_station_list
     RiverDict = stations_by_river(stations)
     
-    
     for item in RiverDict:
-        if item == 'River Aire' or item == 'River Cam':
-           ret = sorted(RiverDict[item])
-           print("River : {} , Stations : {}".format(item,ret))
+        if item == 'River Aire':
+           print("River : {} , Stations : {}".format(item,sorted(RiverDict[item])))
     print(RiverDict['River Aire'])
 run2()
 
