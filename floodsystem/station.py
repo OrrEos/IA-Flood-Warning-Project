@@ -41,12 +41,13 @@ class MonitoringStation:
 
     #task 1Fa
     def typical_range_consistent(self):
-        if self.typical_range[1] < self.typical_range[0]:
+        if self.typical_range ==None:
             return False
-        elif self.typical_range[1] >= self.typical_range[0]:
-            return True
+        elif self.typical_range[1] < self.typical_range[0]:
+            return False
         else:
-            return False
+            return True
+
 
 #task1Fb
 def inconsistent_typical_range_stations(stations):
@@ -55,3 +56,4 @@ def inconsistent_typical_range_stations(stations):
         if station.typical_range_consistent() == False:
             ret.append(station.name)
     return sorted(ret)
+
