@@ -41,8 +41,7 @@ def rivers_with_station(stations):
     rivers = []
     for station in stations:
         rivers.append(station.river)
-    return rivers
-
+    return set(rivers)
 #task 1Db
 def stations_by_river(stations):
     stations = build_station_list()
