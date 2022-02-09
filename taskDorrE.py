@@ -20,12 +20,14 @@ def run2():
     #part 2: dictionary of rivers: stations
     stations = build_station_list
     RiverDict = stations_by_river(stations)
-    
+    print('Stations on the following rivers:')
     for item in RiverDict:
-        if item == 'River Aire':
-           print("River : {} , Stations : {}".format(item,sorted(RiverDict[item])))
-    print(RiverDict['River Aire'])
+        if item in ['River Aire', 'River Cam', 'River Thames'] :
+           print("{} , Stations : {}".format(item,sorted(RiverDict[item])))
+
+    #print(sorted(RiverDict['River Aire']))
+    #print(sorted(RiverDict['River Cam']))
+    #print(sorted(RiverDict['River Thames']))
+    #print(RiverDict['River Dikler']) #used to check that only one station came
+
 run2()
-
-
-    

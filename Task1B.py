@@ -5,7 +5,6 @@ from floodsystem.stationdata import build_station_list
 def run():
     #Task1B Requirements
     stations = build_station_list()
-    town_stations_distance = []
    
     dist = stations_by_distance(stations, (52.2053, 0.1218))
     print("Closest 10 stations")
