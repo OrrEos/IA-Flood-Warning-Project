@@ -1,4 +1,4 @@
-from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station
+from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station, stations_by_river
 from floodsystem.stationdata import build_station_list
 
 '''def test_geo():
@@ -37,7 +37,7 @@ def test_stations_within_radius():
         assert out[0] == 'Bin Brook'
         #checking length of list
         assert len(out) == 11
-
+#Task 1D
 def test_rivers_with_station():
     stations = build_station_list()
     out = rivers_with_station(stations)
@@ -52,6 +52,18 @@ def test_rivers_with_station():
     #checking for duplicates
     #if set(out) is shorter than list (out), then there are duplicates
     assert len(out) == len(set(out))
+
+def test_stations_by_rivers():
+    stations = build_station_list
+    out = stations_by_river(stations)
+    #check that output is a dictionary
+    assert type(out) == dict
+    #check number of stations listed for Aire:
+    aire = out['River Aire']
+    assert len(aire) ==24
+    #check that it's a list
+    assert type(out['River Thames']) == list
+
 
 
 

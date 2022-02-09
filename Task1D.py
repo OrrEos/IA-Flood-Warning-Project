@@ -5,8 +5,8 @@ def run1():
     #part 1: list of rivers with stations
     stations = build_station_list
     ret = rivers_with_station(stations)
-    print(ret)
-    #ret = set(ret)#remove duplicates
+    #print(ret)
+    #ret = set(ret)#remove duplicates #EDIT: did this in geo. function
     ret = list(ret)#back to sliceable list
     ret = sorted(ret)#alphabetical
     ret10 = ret[:10]#first 10 only
@@ -23,10 +23,9 @@ def run2():
     for item in RiverDict:
         if item in ['River Aire', 'River Cam', 'River Thames'] :
            print("{} , Stations : {}".format(item,sorted(RiverDict[item])))
-
     #print(sorted(RiverDict['River Aire']))
     #print(sorted(RiverDict['River Cam']))
     #print(sorted(RiverDict['River Thames']))
     #print(RiverDict['River Dikler']) #used to check that only one station came
 
-#run2()
+run2()
