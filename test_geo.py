@@ -1,4 +1,5 @@
 import random
+from floodsystem.utils import sorted_by_key  # noqa
 from sympy import N
 from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station, stations_by_river,rivers_by_station_number
 from floodsystem.stationdata import build_station_list
@@ -80,9 +81,9 @@ def test_rivers_by_station_number():
     assert(type(out[0])) == tuple
     #check that list is of length N
     assert len(out) == N
-    #
-    #ret = sorted_by_key(out, 1, reverse=False)#sorting the list by decreasing distance from p (the 3rd thing in tuple - distance_p)
-    #assert ret == out 
+    #checking that list is sorted by number of stations
+    ret = sorted_by_key(out, 1, reverse=True)#sorting the list by decreasing distance from p (the 3rd thing in tuple - distance_p)
+    assert ret == out 
 
 
 
