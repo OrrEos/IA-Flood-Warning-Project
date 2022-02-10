@@ -74,6 +74,19 @@ def rivers_by_station_number(stations, N) :
         ret.append((i[0],i[1]))
     #attempting to sort the value of length of the tuple, so that largest number is first.
     ret.sort(key = lambda a:a[1], reverse = True)
-    return ret[:N]
+
+    #create list of no. of stations
+    numberStations = []
+    for i in ret:
+        numberStations.append(i[1])
+    #if the next river after Nth has same no. of stations, include it
+    if numberStations[N] == numberStations[N+1]:
+        print(ret[:N+1])
+    else: #otherwise just print the N riverss
+        print(ret[:N])
+
+    
+    
+
 
 
