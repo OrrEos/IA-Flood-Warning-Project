@@ -1,6 +1,5 @@
 import random
 from floodsystem.utils import sorted_by_key  # noqa
-from sympy import N
 from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station, stations_by_river,rivers_by_station_number
 from floodsystem.stationdata import build_station_list
 
