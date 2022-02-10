@@ -29,4 +29,4 @@ def run2():
     #print(sorted(RiverDict['River Thames']))
     #print(RiverDict['River Dikler']) #used to check that only one station came
 
-#run2()
+run2()
