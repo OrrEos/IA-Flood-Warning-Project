@@ -49,7 +49,6 @@ class MonitoringStation:
         else:
             return True
 
-
 # task1Fb
 def inconsistent_typical_range_stations(stations):
     ret = []

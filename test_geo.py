@@ -1,4 +1,5 @@
 from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station, stations_by_river
+from floodsystem.station import inconsistent_typical_range_stations
 from floodsystem.stationdata import build_station_list
 
 '''def test_geo():
@@ -64,6 +65,22 @@ def test_stations_by_rivers():
     #check that it's a list
     assert type(out['River Thames']) == list
 
+
+
+
+#Task1E
+
+
+#Task1F
+def test_inconsistent_typical_range_stations():
+    stations = build_station_list
+    out = inconsistent_typical_range_stations(stations)
+    #check that output is a list
+    assert type(out) == list
+    #check that first item is string
+    assert type(out[0]) == str
+    #check that list is alphabetical
+    assert out == sorted(out)
 
 
 

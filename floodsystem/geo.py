@@ -12,28 +12,26 @@ from floodsystem.stationdata import build_station_list
 
 
 #task 1B: list of (station, distance) tuples from coord p 
-#sort the list by distance
-
 #required function signature
 def stations_by_distance(stations, p):
     #first, a list of all stations
     stations = build_station_list()
     ret = []
     for station in stations:
-        distance_p = haversine(p, station.coord)
-        a = (station.name, station.town, distance_p)
+        distance_p = haversine(p, station.coord)#using the imported haversine function to find distance between locations
+        a = (station.name, station.town, distance_p)#creating the tuple for each station
         ret.append(a)
-    return sorted_by_key(ret, 2, reverse=False)
+    return sorted_by_key(ret, 2, reverse=False)#sorting the list by decreasing distance from p (the 3rd thing in tuple - distance_p)
     
 #task 1C
 def stations_within_radius(stations, centre, r):
     stations = build_station_list()
     ret = []
     for station in stations:
-        distance_x = haversine(centre, station.coord)
-        if distance_x <= r:
+        distance_x = haversine(centre, station.coord)#distance between centre point & stations
+        if distance_x <= r: #if station is close enough to point
             ret.append(station.name)
-    return sorted(ret)
+    return sorted(ret)#sort the list alphabetically
 
 #task 1Da
 def rivers_with_station(stations):
@@ -63,7 +61,5 @@ def rivers_by_station_number(stations, N) :
     #attempting to sort the value of length of the tuple, so that largest number is first.
     ret.sort(ret, key = ret[[1]], reverse = True)
     return ret[:N]
-
-
 
 
