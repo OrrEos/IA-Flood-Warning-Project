@@ -81,9 +81,9 @@ def rivers_by_station_number(stations, N) :
         numberStations.append(i[1])
     #if the next river after Nth has same no. of stations, include it
     if numberStations[N] == numberStations[N+1]:
-        print(ret[:N+1])
+        return ret[:N+1]
     else: #otherwise just print the N riverss
-        print(ret[:N])
+        return ret[:N]
 
     
     
