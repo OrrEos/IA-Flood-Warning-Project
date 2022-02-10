@@ -43,6 +43,7 @@ def rivers_with_station(stations):
         rivers.append(station.river)
     return set(rivers)
 #task 1Db
+
 def stations_by_river(stations):
     stations = build_station_list()
     dict = {}
@@ -54,16 +55,40 @@ def stations_by_river(stations):
             dict[station.river] = list(dict[station.river])+[station.name]
     return dict
 
+
+def stations_by_len_river(stations):
+    stations = build_station_list()
+    dict = {}
+    for station in stations:
+        #Check for river in dictionary, and add new item, or append dictionary list.
+        if not station.river  in dict:
+            dict.update({station.river: len(list([station.name]))})#add new name to river key
+        else:
+            dict[station.river] +=1
+    return dict
+
 #task 1E
+
 def rivers_by_station_number(stations, N) :
-    riverDict = stations_by_river(stations)
+    riverDict = stations_by_len_river(stations)
     ret = []
-    for (key,value) in riverDict.items():
-        ret.append(key, len(value))
+    for i in riverDict.items():
+        ret.append((i[0],i[1]))
     #attempting to sort the value of length of the tuple, so that largest number is first.
-    ret.sort(ret, key = ret[[1]], reverse = True)
+    ret.sort(key = lambda a:a[1], reverse = True)
     return ret[:N]
 
+"""
+def rivers_by_station_number(stations, N):
+    stations = build_station_list()
+    list = []
+    for station in stations:
+        if not station.river() in list:
+            list.append([station.river(), 1])
+        else:
+            list[station[1]]+=1
+    print(list)
+"""
 
 
 

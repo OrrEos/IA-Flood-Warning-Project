@@ -49,11 +49,12 @@ class MonitoringStation:
         else:
             return True
 
+
 # task1Fb
 def inconsistent_typical_range_stations(stations):
 #    global typical_range_consistent()
     ret = []
     for station in stations:
-        if station.typical_range_consistent(self) == False:
+        if not station.typical_range_consistent():
             ret.append(station.name)
     return sorted(ret)
