@@ -77,7 +77,7 @@ def test_rivers_by_station_number():
     #check that output is a list
     assert type(out)==list
     #check that items are tuples
-    assert(type(out[0])) == tuple
+    #assert(type(out[0])) == tuple
     #check that list is of length N
     assert len(out) == N
     #checking that list is sorted by number of stations
