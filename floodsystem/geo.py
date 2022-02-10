@@ -76,15 +76,4 @@ def rivers_by_station_number(stations, N) :
     ret.sort(key = lambda a:a[1], reverse = True)
     return ret[:N]
 
-"""
-def rivers_by_station_number(stations, N):
-    stations = build_station_list()
-    list = []
-    for station in stations:
-        if not station.river() in list:
-            list.append([station.river(), 1])
-        else:
-            list[station[1]]+=1
-    print(list)
-"""
 
