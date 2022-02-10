@@ -1,5 +1,6 @@
-from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station, stations_by_river
-from floodsystem.station import inconsistent_typical_range_stations
+import random
+from sympy import N
+from floodsystem.geo import stations_by_distance, stations_within_radius, rivers_with_station, stations_by_river,rivers_by_station_number
 from floodsystem.stationdata import build_station_list
 
 '''def test_geo():
@@ -69,7 +70,19 @@ def test_stations_by_rivers():
 
 
 #Task1E
-
+def test_rivers_by_station_number():
+    stations = build_station_list()
+    N = random.randint(0,9)
+    out = rivers_by_station_number(stations, N)
+    #check that output is a list
+    assert type(out)==list
+    #check that items are tuples
+    assert(type(out[0])) == tuple
+    #check that list is of length N
+    assert len(out) == N
+    #
+    #ret = sorted_by_key(out, 1, reverse=False)#sorting the list by decreasing distance from p (the 3rd thing in tuple - distance_p)
+    #assert ret == out 
 
 
 
