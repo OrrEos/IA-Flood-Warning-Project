@@ -76,13 +76,20 @@ def rivers_by_station_number(stations, N) :
     ret.sort(key = lambda a:a[1], reverse = True)
 
     #create list of no. of stations
+    """
     numberStations = []
     for i in ret:
         numberStations.append(i[1])
+    
     #if the next river after Nth has same no. of stations, include it
     if numberStations[N] == numberStations[N+1]:
         return ret[:N+1]
     else: #otherwise just print the N riverss
+        return ret[:N]
+    """
+    if ret[N-1][1] == ret[N][1]:
+        return ret[:N+1]
+    else:
         return ret[:N]
 
     
