@@ -51,13 +51,21 @@ class MonitoringStation:
 
     #task 2B
     def relative_water_level(self):
-        if not self.typical_range_consistent() or not(self.latest_level()==None):
+        #if not self.typical_range_consistent() or not(self.latest_level()==None):
+            #return None
+        #are the water levels consistent?
+        if self.typical_range_consistent() == True:
+            #is there a value for the latest level (which would be a float)?
+            if type(self.latest_level) == float:
+                #let's get the fraction (split into top & bottom to make it easier to see)
+                top_frac = self.latest_level-self.typical_range[0]
+                bottom_frac = (self.typical_range[1]-self.typical_range[0])
+                fraction = top_frac / bottom_frac
+                return fraction
+        #if the levels aren't consistent or there is no latest level...
+        else: 
             return None
-        else:
-            top_frac = (self.latest_level-self.typical_range[0])
-            bottom_frac = (self.typical_range[1]-self.typical_range[0])
-            fraction = top_frac / bottom_frac
-            return fraction
+            
 
 # task1Fb
 def inconsistent_typical_range_stations(stations):
