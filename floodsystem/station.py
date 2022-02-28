@@ -54,7 +54,7 @@ class MonitoringStation:
         #if not self.typical_range_consistent() or not(self.latest_level()==None):
             #return None
         #are the water levels consistent?
-        if self.typical_range_consistent() == True:
+        if self.typical_range_consistent():
             #is there a value for the latest level (which would be a float)?
             if type(self.latest_level) == float:
                 #let's get the fraction (split into top & bottom to make it easier to see)
@@ -62,9 +62,10 @@ class MonitoringStation:
                 bottom_frac = (self.typical_range[1]-self.typical_range[0])
                 fraction = top_frac / bottom_frac
                 return fraction
-        #if the levels aren't consistent or there is no latest level...
+             #if the levels aren't consistent or there is no latest level...
         else: 
             return None
+
             
 
 # task1Fb
