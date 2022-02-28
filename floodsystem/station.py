@@ -54,7 +54,9 @@ class MonitoringStation:
         if not self.typical_range_consistent() or not(self.latest_level()==None):
             return None
         else:
-            fraction = (self.latest_level()-self.typical_range[0])/(self.typical_range[1]-self.typical_range[0])
+            top_frac = (self.latest_level-self.typical_range[0])
+            bottom_frac = (self.typical_range[1]-self.typical_range[0])
+            fraction = top_frac / bottom_frac
             return fraction
 
 # task1Fb
