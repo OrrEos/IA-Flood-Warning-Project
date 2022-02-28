@@ -14,10 +14,8 @@ def stations_level_over_threshold(stations, tol):
                     #print("adding station", station.relative_water_level())
                     #add this tuple of station & the relative level to the output list 
                     ret.append((station.name, station.relative_water_level()))
-    
     ret = sorted(ret, key=lambda x:-x[1])
     return ret
-
 
 #task 2C - *stations most at risk* - same as b except no specific threshold, just a number of top stations
 def stations_highest_rel_level(stations, N):
