@@ -1,6 +1,5 @@
-from turtle import color
+
 import matplotlib.pyplot as plt
-import matplotlib
 from datetime import datetime, timedelta
 from floodsystem.analysis import polyfit
 from floodsystem.stationdata import build_station_list
@@ -20,9 +19,9 @@ def plot_water_levels(station, dates, levels):
     #Typical Low and High Levels
     lowLevel = station.typical_range[0]
     highLevel = station.typical_range[1]
-    #plot these typical values
-    plt.plot(dates, lowLevel, color = 'b', linestyle = '-')
-    plt.plot(dates, highLevel, color = 'b', linestyle = '-')
+    plt.axhline(y=lowLevel,color='r', linestyle=':')
+    plt.axhline(y=highLevel, color='r',  linestyle='--')
+   
 
     # Display plot
     plt.tight_layout()  # This makes sure plot does not cut off date labels
