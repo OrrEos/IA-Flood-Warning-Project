@@ -51,11 +51,9 @@ class MonitoringStation:
 
     #task 2B
     def relative_water_level(self):
-        if not self.typical_range_consistent() or not(self.latest_level()==None):
-            return None
-        else:
-            fraction = (self.latest_level()-self.typical_range[0])/(self.typical_range[1]-self.typical_range[0])
-            return fraction
+        if self.typical_range_consistent() and self.latest_level!=None:
+            fraction = (self.latest_level - self.typical_range[0])/(self.typical_range[1] - self.typical_range[0])
+            return float(fraction)
 
 # task1Fb
 def inconsistent_typical_range_stations(stations):
