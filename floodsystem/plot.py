@@ -2,7 +2,6 @@
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
-from sklearn.tree import plot_tree
 from floodsystem.analysis import polyfit
 from floodsystem.stationdata import build_station_list
 from floodsystem.station import MonitoringStation
@@ -32,24 +31,31 @@ def plot_water_levels(station, dates, levels):
     plt.show()
 
 def plot_water_level_with_fit(station, dates, levels, p):
+    #is there any data?
     if len(dates) == 0 or len(levels) == 0:
-        return None
+        pass #ignore polyfit if there is no data
+
     else:
         poly, shift = polyfit(dates, levels, p)
-        numbered_dates = matplotlib.dates.date2num(dates)
-        #dates = np.linspace(numbered_dates[0],numbered_dates[-1],50)
-        #Typical Low and High Levels
+
+        #update dates to be shifted
+        dates = matplotlib.dates.date2num(dates) - shift
+        #get 50 data points between first and last date for x axis, time
+        time = np.linspace(dates[0], dates[-1], 50)
+
+        #Plotting those graphs
+        plt.plot(dates, levels, '-', label = "Original Data")
+        plt.plot(time, poly(time), label = "Polyfit")
+
         low_level = station.typical_range[0]
         high_level = station.typical_range[1]
-    
-        #trying to account for different list lengths in plotting
+
         plt.axhline(y=low_level,color='r', linestyle=':')
         plt.axhline(y=high_level, color='r',  linestyle='--')
-        #    plt.plot(dates, levels, label = 'Actual data')
-        #    plt.plot(dates, poly(dates), label = 'Polynomial model')
-        plt.plot(dates, poly(numbered_dates - shift))
-
+    
         plt.tight_layout()  # This makes sure plot does not cut off date labels
+        plt.ylabel("Relative Water Level")
+        plt.xlabel("Days before now")
 
         plt.show()
     

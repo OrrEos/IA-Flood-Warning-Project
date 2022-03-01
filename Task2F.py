@@ -22,6 +22,7 @@ from floodsystem.flood import stations_highest_rel_level
 import floodsystem.plot as plot
 from floodsystem.datafetcher import fetch_measure_levels
 import matplotlib.pyplot as plt
+from floodsystem.station import MonitoringStation
 
 def run():
     # Build list of stations
@@ -29,9 +30,10 @@ def run():
     # Update latest level data for all stations
     update_water_levels(stations)
 
-    #N stations with greatest current water level
+    #N stations with greatest current water level to plot
     N =5
     stationlist = stations_highest_rel_level(stations, N)
+
     #list of names only
     stationlistName = []
     for i in stationlist:
@@ -46,7 +48,6 @@ def run():
 
             # Plot water levels against time for each station.
             plot.plot_water_level_with_fit(station, dates, levels,4)
-            plt.tight_layout()  # so that all data labels are shown
             #print("Plot Water Level")
             print(station.name)
             #plt.show()
