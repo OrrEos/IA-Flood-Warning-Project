@@ -23,8 +23,7 @@ def run():
     for station in stations:
         #for the top N stations, get the "whole" station info, inc measure_id
         if station.name in stationlistName:
-            dates, levels = fetch_measure_levels(
-                station.measure_id, dt=datetime.timedelta(days=dt))
+            dates, levels = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
 
             # Plot water levels against time for each station.
             plot.plot_water_levels(station, dates, levels)
