@@ -7,6 +7,9 @@ def run():
     update_water_levels(stations)
 
     ret = stations_highest_rel_level(stations, 10)
-    print(ret)
+    #print(ret)
+    print("**Stations with highest relative water level:**")
+    for i in range(len(ret)):
+        print("{} {}".format(ret[i][0], ret[i][1]))
 
 run()
