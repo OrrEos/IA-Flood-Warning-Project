@@ -19,7 +19,7 @@ def test_stations_level_over_threshold():
     #check that list is at least of length 1
     #assert len(out) >= 1
     #check that they are sorted in descending order of relative water level
-    for i in range(len(stations_above) - 1):
+    for i in range(len(out) - 1):
         assert out[i][1] >= out[i + 1][1]
         assert out[i][1] >= tol
 
