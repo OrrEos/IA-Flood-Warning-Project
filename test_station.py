@@ -41,8 +41,5 @@ def test_inconsistent_typical_range_stations():
     assert out == sorted(out)
 
 
-#Task2B
-def test_relative_water_level():
-    stations = build_station_list()
-    out = MonitoringStation.relative_water_level(self)
+
     

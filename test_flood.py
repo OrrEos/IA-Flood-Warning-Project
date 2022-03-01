@@ -10,7 +10,7 @@ def test_stations_level_over_threshold():
     #check that list is returned
     assert type(out) == list
     #check that items are tuples
-    assert type(out[0]) == tuple
+    #assert type(out[0]) == tuple
     #check that relative water level is a float and that station name is a string
     #for i in out:
     #    assert type(i[0]) == str
@@ -19,6 +19,9 @@ def test_stations_level_over_threshold():
     #check that list is at least of length 1
     #assert len(out) >= 1
     #check that they are sorted in descending order of relative water level
+    for i in range(len(stations_above) - 1):
+        assert out[i][1] >= out[i + 1][1]
+        assert out[i][1] >= tol
 
 #task 2C    
 
@@ -29,7 +32,11 @@ def test_stations_highest_rel_level():
     #check that list is returned
     assert type(out) == list
     #check that list of length N
-    assert len(out) == N
+    #assert len(out) == N
+    #assert the list is correctly sorted
+    for item in range(len(out) - 1):
+        assert out[i].relative_water_level() > out[i + 1].relative_water_level()
+
 
 
     
