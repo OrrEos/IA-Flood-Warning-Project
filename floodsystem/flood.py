@@ -24,6 +24,7 @@ def stations_highest_rel_level(stations, N):
     for station in stations:
         if station.typical_range_consistent() != False:
             if  type(station.relative_water_level()) == float:
+                #append that station name and relative level
                 ret.append((station.name, station.relative_water_level()))
     ret = sorted(ret, key=lambda x:-x[1])
     top_N = ret[:N]
