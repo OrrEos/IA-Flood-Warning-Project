@@ -22,7 +22,7 @@ town = "Town 1"
 dummyStation1 = MonitoringStation(station_id, measure_id, label, coord, typical_range, river, town)
 dummyStation1.latest_level = 1.0
 
-'''#Second Dummy Station
+#Second Dummy Station
 station_id = "station_id 2"
 measure_id = "measure_id 2"
 label = "station 2"
@@ -32,7 +32,7 @@ river = "river 2"
 town = "Town 2"
 
 dummyStation2 = MonitoringStation(station_id, measure_id, label, coord, typical_range, river, town)
-dummyStation2.latest_level = 2.0
+dummyStation2.latest_level = 1.0
 
 #Third Dummy Station
 station_id = "station_id 3"
@@ -46,7 +46,6 @@ town = "Town 3"
 dummyStation3 = MonitoringStation(station_id, measure_id, label, coord, typical_range, river, town)
 dummyStation3.latest_level = 3.0
 
-dummy_stations_list = [dummyStation1, dummyStation2, dummyStation3]'''
 
 #task 2b
 def test_stations_level_over_threshold():
@@ -91,10 +90,14 @@ def test_stations_highest_rel_level():
     assert type(out[0][1]) == float
     assert type(out[0][0]) == str
     
-
+    
     #assert the list is correctly sorted
     for item in range(len(out) - 1):
         assert out[item][1] >= out[item + 1][1]
+
+    dummy_stations_list = [dummyStation1, dummyStation2, dummyStation3]
+    assert stations_highest_rel_level(dummy_stations_list, 2) == [('station 3', dummyStation3.relative_water_level()), ('station 1', dummyStation1.relative_water_level())]
+
 
 #test_stations_highest_rel_level()
 
