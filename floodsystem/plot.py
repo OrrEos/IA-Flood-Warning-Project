@@ -1,10 +1,13 @@
 
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+
+from sklearn.tree import plot_tree
 from floodsystem.analysis import polyfit
 from floodsystem.stationdata import build_station_list
 from floodsystem.station import MonitoringStation
 import numpy as np
+import matplotlib
 
 def plot_water_levels(station, dates, levels):
     # Plot
@@ -29,17 +32,23 @@ def plot_water_levels(station, dates, levels):
     plt.show()
 
 def plot_water_level_with_fit(station, dates, levels, p):
-    stations = build_station_list()
     poly, shift = polyfit(dates, levels, p)
-    typical_min=[]
-    typical_max=[]
     numbered_dates = matplotlib.dates.date2num(dates)
+    dates = np.linspace(numbered_dates[0],numbered_dates[-1],50)
+    #Typical Low and High Levels
+    low_level = station.typical_range[0]
+    high_level = station.typical_range[1]
+
+#trying to account for different list lengths in plotting
+    plt.plot(dates, np.linspace(low_level, low_level,50), label = 'Typical Minimum')
+    plt.plot(dates, np.linspace(high_level, high_level,50), label = 'Typical Maximum')
+#    plt.plot(dates, levels, label = 'Actual data')
+    plt.plot(dates, poly(dates), label = 'Polynomial model')
+
+
+"""
     for station in stations:
-        typical_min.append(station.typical_range[0])
-        typical_max.append(station.typical_range[1])
-    np.plot(numbered_dates, levels, label = 'Actual data')
-    np.plot(numbered_dates, typical_min, label = 'Typical Minimum')
-    np.plot(numbered_dates, typical_max, label = 'Typical Maximum')
-    np.plot(numbered_dates, poly, label = 'Polynomial model')
-
-
+        if station.typical_range_consistent() != False:
+            typical_min.append(station.typical_range[0])
+            typical_max.append(station.typical_range[1])
+"""

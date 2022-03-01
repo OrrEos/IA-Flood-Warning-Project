@@ -6,10 +6,10 @@ import datetime
 def run():
     stations = build_station_list()
     update_water_levels(stations)
-    dt = 5
-    print(stations[0])
-    station=stations[0]
+    dt = 2
+    print(stations[1])
+    station=stations[1]
     dates, levels = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
-    plot_water_level_with_fit(stations[0], dates, levels,3)
+    plot_water_level_with_fit(stations[1], dates, levels,3)
 
 run()
