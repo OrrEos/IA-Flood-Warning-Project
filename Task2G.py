@@ -1,10 +1,18 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
+from floodsystem.analysis import polyfit
+import matplotlib
+import datetime
+from floodsystem.datafetcher import fetch_measure_levels
+import numpy as np
 
-def run():
-    stations = build_station_list()
-    update_water_levels(stations)
+
+
+stations = build_station_list()
+update_water_levels(stations)
+
+def flood_factor_classification():
     inconsistent_data = []
-    severe = []
+    #severe = []
     high = []
     moderate = []
     low = []
@@ -24,9 +32,9 @@ def run():
 
             #divide the stations into risk categories
             #adding *town* not name, though
+            #if factor >= 5:
+            #    severe.append((station.town, factor))
             if factor >= 3:
-                severe.append((station.town, factor))
-            elif factor >= 2:
                 high.append((station.town, factor))
             #if relative level is around the typical high level:
             elif factor >= 1:
@@ -39,19 +47,19 @@ def run():
             inconsistent_data.append(station.town)
 
     #removing duplicates
-    severe = set(severe)
+    #severe = set(severe)
     high = set(high)
     moderate = set(moderate)
     low = set(low)
     
     #un-set the lists
-    severe = list(severe)
+    #severe = list(severe)
     high = list(high)
     moderate = list(moderate)
     low = list(low)
 
     #sort each risk category list from greatest factor to smallest
-    severe = sorted(severe, key=lambda x:-x[1])
+    #severe = sorted(severe, key=lambda x:-x[1])
     high = sorted(high, key=lambda x:-x[1])
     moderate = sorted(moderate, key=lambda x:-x[1])
     low = sorted(low, key=lambda x:-x[1])
@@ -59,19 +67,54 @@ def run():
 
     
 
-    print("Towns most at risk of flooding")
+    #print("**Towns most at risk of flooding:**")
     #print(severe)
-    mostRisk = [i[0] for i in severe]
+    #mostRisk = [i[0] for i in severe]
+    mostRisk = [i[0] for i in high]
     #print(mostRisk) 
-    for i in range(len(mostRisk)):
-        print("{}".format(mostRisk[i]))
-   
-    return severe
+    #for i in range(len(mostRisk)):
+    #    print("{}".format(mostRisk[i]))
+    #print("There are {} towns at severe risk of flooding.".format(len(mostRisk)))
+    #print(severe)
+    #return severe
+    
+    #"severe" classification means that it 
+    # 1)has factor greater than 3 
+    #AND 2) a rising water level
+    severe = []
+
+    dt = 2
+    for station in stations:
+        if station.name in mostRisk:
+            dates, levels = fetch_measure_levels(
+                station.measure_id, dt=datetime.timedelta(days=dt))
+            #print(station.name)
+            #print(dates)
 
 
+            if len(dates) == 0 or len(levels) == 0:
+                #print(station.name)
+                pass #ignore polyfit if there is no data
 
-
-
-
-
-run()
+            else:
+                #print("have data")
+                #print(station.name)
+                poly, shift = polyfit(dates, levels, p = 4)
+                #update dates to be shifted
+                dates = matplotlib.dates.date2num(dates) - shift
+                #get 50 data points between first and last date for x axis, time
+                time = np.linspace(dates[0], dates[-1], 50)
+                polyRisk = poly(time)
+                #print(polyRisk)
+                gradient = (polyRisk[-1] - polyRisk[-2])/(time[-1] - time[-2])
+                #print(gradient)
+                #a positive gradient means that the water level is rising
+                if gradient > 0:
+                    #print("Water level is rising at the following stations:")
+                    #print(station.town)
+                    severe.append(station.town)
+    #print("**Water level is rising at the following stations:**")
+    print("**Towns most at risk of flooding:**")
+    for i in range(len(severe)):
+        print("{}".format(severe[i]))
+flood_factor_classification()
