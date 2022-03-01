@@ -37,3 +37,4 @@ def test_plot_water_level_with_fit():
         plot.plot_water_level_with_fit(stations[i], dates[i], levels[i], order)
 
     assert plt.show() == None
+test_plot_water_level_with_fit()

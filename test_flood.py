@@ -23,6 +23,8 @@ def test_stations_level_over_threshold():
         assert out[i][1] >= out[i + 1][1]
         assert out[i][1] >= tol
 
+test_stations_level_over_threshold()
+
 #task 2C    
 
 def test_stations_highest_rel_level():
@@ -35,7 +37,9 @@ def test_stations_highest_rel_level():
     #assert len(out) == N
     #assert the list is correctly sorted
     for item in range(len(out) - 1):
-        assert out[i].relative_water_level() > out[i + 1].relative_water_level()
+        assert out[item].relative_water_level() > out[item + 1].relative_water_level()
+
+test_stations_highest_rel_level()
 
 
 

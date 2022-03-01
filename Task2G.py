@@ -66,7 +66,7 @@ def run():
     for i in range(len(mostRisk)):
         print("{}".format(mostRisk[i]))
    
-
+    return severe
 
 
 
