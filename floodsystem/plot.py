@@ -40,10 +40,10 @@ def plot_water_level_with_fit(station, dates, levels, p):
     high_level = station.typical_range[1]
 
 #trying to account for different list lengths in plotting
-    plt.plot(dates, np.linspace(low_level, low_level,50), label = 'Typical Minimum')
-    plt.plot(dates, np.linspace(high_level, high_level,50), label = 'Typical Maximum')
+    plt.axhline(y=low_level,color='r', linestyle=':')
+    plt.axhline(y=high_level, color='r',  linestyle='--')
 #    plt.plot(dates, levels, label = 'Actual data')
-    plt.plot(dates, poly(dates), label = 'Polynomial model')
+#    plt.plot(dates, poly(dates), label = 'Polynomial model')
 
 
 """
