@@ -9,7 +9,7 @@ def polyfit(dates, levels,p):
 
     #dates into a list of floats
     numbered_dates = matplotlib.dates.date2num(dates)
-
+    
     #date shift is the first date
     shift = numbered_dates[0]
     #shifted dates to use for polynomial
