@@ -5,6 +5,19 @@ import datetime
 from floodsystem.datafetcher import fetch_measure_levels
 import numpy as np
 
+"""
+My logic for task 2G:
+
+1. classify stations into three categories (low, moderate and high) according to a flood factor
+    (this flood factor compares relative water level to the typical range)
+    this outputs a list of tuples (town & relative water level) for the high category
+2. use polyfit to work out whether the water level is currently rising
+    (found gradient between last two data points: if positive, then rising)
+    a "severe" classification is given to towns in the high category that also have a rising water level
+    this severe category is returned
+
+"""
+
 
 
 stations = build_station_list()
@@ -64,14 +77,18 @@ def flood_factor_classification():
     moderate = sorted(moderate, key=lambda x:-x[1])
     low = sorted(low, key=lambda x:-x[1])
 
+    #print(high)
+    return high
+
 
     
-
+def mostRiskList():
+    high = flood_factor_classification()
     #print("**Towns most at risk of flooding:**")
     #print(severe)
     #mostRisk = [i[0] for i in severe]
-    mostRisk = [i[0] for i in high]
-    #print(mostRisk) 
+    highRisk = [i[0] for i in high]
+    #print(highRisk) 
     #for i in range(len(mostRisk)):
     #    print("{}".format(mostRisk[i]))
     #print("There are {} towns at severe risk of flooding.".format(len(mostRisk)))
@@ -85,7 +102,7 @@ def flood_factor_classification():
 
     dt = 2
     for station in stations:
-        if station.name in mostRisk:
+        if station.name in highRisk:
             dates, levels = fetch_measure_levels(
                 station.measure_id, dt=datetime.timedelta(days=dt))
             #print(station.name)
@@ -117,4 +134,6 @@ def flood_factor_classification():
     print("**Towns most at risk of flooding:**")
     for i in range(len(severe)):
         print("{}".format(severe[i]))
+        
 flood_factor_classification()
+mostRiskList()
