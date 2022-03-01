@@ -10,3 +10,4 @@ def test_taskG():
     for item in range(len(out) - 1):
         assert out[item][1] > out[item + 1][1]
 
+test_taskG()

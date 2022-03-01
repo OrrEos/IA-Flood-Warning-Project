@@ -15,4 +15,6 @@ def test_polyfit():
     assert type(poly) == np.poly1d
     assert shift != 0
     assert type(shift) == np.float64
-    
+
+test_polyfit()
+
