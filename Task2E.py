@@ -20,6 +20,7 @@ def run():
         stationlistName.append(i[0])
   
     dt = 10
+    print("Plot Water Level")
     for station in stations:
         #for the top N stations, get the "whole" station info, inc measure_id
         if station.name in stationlistName:
@@ -28,7 +29,7 @@ def run():
             # Plot water levels against time for each station.
             plot.plot_water_levels(station, dates, levels)
             plt.tight_layout()  # so that all data labels are shown
-            print("Plot Water Level")
+            print(station.name)
             #plt.show()
 
     
