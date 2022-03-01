@@ -22,3 +22,18 @@ def test_plot_water_levels():
     assert plt.show() == None
 
 test_plot_water_levels()
+
+#task 2Fb
+def test_plot_water_level_with_fit():
+    stations = build_station_list()
+    update_water_levels(stations)
+    dates = np.empty(5, dtype=object)
+    levels = np.empty(5, dtype=object)
+    dt = 10
+    order = 3
+    for i in range(5):
+        dates[i], levels[i] = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=dt))
+
+        plot.plot_water_level_with_fit(stations[i], dates[i], levels[i], order)
+
+    assert plt.show() == None
